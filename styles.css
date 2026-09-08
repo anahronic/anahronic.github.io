@@ -1,0 +1,235 @@
+/*
+ * Shadoo / Anahronic Arts — static site styles.
+ * Local only: no web fonts, no CDN, no remote anything.
+ * Palette matches the app's Night theme.
+ */
+
+:root {
+  --bg: #0f1319;
+  --panel: #161c25;
+  --text: #e9eef5;
+  --muted: #a3b2c4;
+  --border: #28323e;
+  --accent: #4da3ff;
+  --scrim: rgba(10, 13, 18, 0.72);
+  --radius: 10px;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  /* Keeps long tokens/paths in the policy from forcing a sideways scroll. */
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--text);
+  background-color: var(--bg);
+  /* Portrait artwork by default (phones get it unscaled and sharp); the wide
+     one is swapped in below where the viewport is actually wide. */
+  background-image: linear-gradient(var(--scrim), var(--scrim)), url("/assets/bg-tall.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (min-width: 700px) {
+  body {
+    background-image: linear-gradient(var(--scrim), var(--scrim)), url("/assets/bg-wide.jpg");
+    background-position: center center;
+  }
+}
+
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+/* Header / wordmark ------------------------------------------------------ */
+
+.brand {
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+
+.logo {
+  display: block;
+  width: 260px;
+  max-width: 72%;
+  height: auto;
+  /* The wordmark is glowing letters on a near-black plate; screening it over
+     a dark backdrop drops the plate and leaves only the glyphs. */
+  mix-blend-mode: screen;
+  margin: 0 0 10px -6px;
+}
+
+h1 {
+  font-size: 1.5rem;
+  line-height: 1.25;
+  margin: 0 0 16px;
+}
+
+h2 {
+  font-size: 1.12rem;
+  margin: 32px 0 10px;
+  color: var(--text);
+}
+
+h3 {
+  font-size: 1rem;
+  margin: 22px 0 8px;
+  color: var(--text);
+}
+
+p,
+li {
+  color: var(--muted);
+}
+
+strong {
+  color: var(--text);
+}
+
+a {
+  color: var(--accent);
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+/* Panels ----------------------------------------------------------------- */
+
+.card {
+  background: color-mix(in srgb, var(--panel) 88%, transparent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 22px 24px;
+  margin: 24px 0;
+}
+
+.lede {
+  font-size: 1.03rem;
+  color: var(--text);
+}
+
+.meta {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.meta li {
+  padding: 5px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.meta li:last-child {
+  border-bottom: 0;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 11px 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--panel) 92%, transparent);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.btn:hover,
+.btn:focus {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn--primary {
+  background: #2f7fd6;
+  border-color: #2f7fd6;
+  color: #fff;
+}
+
+.btn--primary:hover,
+.btn--primary:focus {
+  background: #4da3ff;
+  border-color: #4da3ff;
+  color: #08111c;
+}
+
+/* Policy typography ------------------------------------------------------ */
+
+.doc h2:first-of-type {
+  margin-top: 8px;
+}
+
+.doc ul {
+  padding-left: 22px;
+}
+
+.doc li {
+  margin: 6px 0;
+}
+
+.note {
+  border-left: 3px solid var(--accent);
+  padding: 2px 0 2px 14px;
+  margin: 18px 0;
+}
+
+code {
+  font-family: ui-monospace, Consolas, "SFMono-Regular", Menlo, monospace;
+  font-size: 0.88em;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  padding: 1px 5px;
+  overflow-wrap: anywhere;
+}
+
+footer {
+  margin-top: 40px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+footer a {
+  color: var(--muted);
+}
+
+/* Small screens ---------------------------------------------------------- */
+
+@media (max-width: 480px) {
+  .wrap {
+    padding: 24px 16px 48px;
+  }
+
+  .card {
+    padding: 18px 16px 20px;
+  }
+
+  h1 {
+    font-size: 1.32rem;
+  }
+}

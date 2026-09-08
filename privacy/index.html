@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shadoo Privacy Policy — Anahronic Arts</title>
+    <meta
+      name="description"
+      content="Privacy Policy for the Shadoo Android application by Anahronic Arts. What the app processes on your device, what it never sends anywhere, and how to delete it."
+    />
+    <meta name="theme-color" content="#161c25" />
+    <link rel="icon" href="/assets/favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/assets/icon-192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/assets/icon-192.png" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="wrap doc">
+      <p class="brand">Anahronic Arts</p>
+      <img class="logo" src="/assets/logo.png" alt="Shadoo" />
+      <h1>Shadoo Privacy Policy</h1>
+
+      <div class="card">
+        <ul class="meta">
+          <li><strong>Application:</strong> Shadoo</li>
+          <li><strong>Package name:</strong> <code>com.anahronic.shadoo</code></li>
+          <li><strong>Developer / entity:</strong> Anahronic Arts</li>
+          <li>
+            <strong>Privacy contact:</strong>
+            <a href="mailto:rubilov@bk.ru">rubilov@bk.ru</a>
+          </li>
+          <li><strong>Effective date:</strong> 8 September 2026</li>
+        </ul>
+      </div>
+
+      <h2>1. Summary</h2>
+      <p>
+        Shadoo runs entirely on your device. It has no server of its own, no user accounts, and no
+        analytics, advertising or crash-reporting components. The developer does not receive,
+        collect, store or have access to your messages, your code words, or any other personal
+        data.
+      </p>
+      <p class="note">
+        This policy deliberately separates two different things: data that the app
+        <strong>processes locally on your device</strong>, and data that is
+        <strong>collected by the developer</strong>. The app does process data locally — that is
+        what an encryption app does. None of it is collected by, or transmitted to, the developer
+        or any third party by the app.
+      </p>
+
+      <h2>2. What Shadoo does</h2>
+      <p>
+        Two people agree in advance, offline, on one or more secret code words and give each one a
+        number. To send a message you choose the number, enter the code word and your text; the app
+        encrypts it on your device and shows you a single block of encrypted text. You deliver that
+        block yourself, by any means you choose. The recipient pastes it back into Shadoo and
+        enters the same code word to recover the original text.
+      </p>
+
+      <h2>3. Data processed locally on your device</h2>
+      <p>
+        The following is handled on the device only. It is not transmitted to the developer, and
+        the app has no mechanism to transmit it (see section 5).
+      </p>
+      <ul>
+        <li>
+          <strong>Code words you type.</strong> Used to derive an encryption key. They are not
+          stored in readable form and are not written to the message history.
+        </li>
+        <li>
+          <strong>Message text you type.</strong> Encrypted on the device. The readable text exists
+          only in memory while the app is unlocked.
+        </li>
+        <li>
+          <strong>Encrypted message history.</strong> Stored on the device in encrypted form only —
+          see sections 7 and 12.
+        </li>
+        <li>
+          <strong>App settings.</strong> Interface language, theme, auto-lock on/off and timeout,
+          Strict Offline Mode, Secure Input Mode, and the wipe-on-background option. Stored locally
+          in the app's own storage. These are preferences, not personal data.
+        </li>
+        <li>
+          <strong>Clipboard content</strong> — only at the moment you tap the paste button, and
+          only to look for an encrypted block. See section 9.
+        </li>
+        <li>
+          <strong>An image file you select</strong> — only when you use the "Load QR from file"
+          function, and only to read a QR code out of that image. See section 10.
+        </li>
+      </ul>
+
+      <h2>4. Data collected by the developer</h2>
+      <p>
+        <strong>None.</strong> Shadoo has no user accounts, no registration, no sign-in, no
+        profiles and no identifiers assigned by the developer. It does not collect names, e-mail
+        addresses, phone numbers, contacts, location, device identifiers, advertising identifiers,
+        or usage statistics. It contains no analytics SDK, no advertising SDK and no
+        crash-reporting SDK.
+      </p>
+
+      <h2>5. No server, and no network permission</h2>
+      <p>
+        There is no Shadoo server. The Android application does not request the
+        <code>android.permission.INTERNET</code> permission, so it cannot send or receive data over
+        the network at all. This can be verified independently by inspecting the permissions of the
+        installed app.
+      </p>
+
+      <h2>6. Permissions</h2>
+      <ul>
+        <li>
+          <strong><code>android.permission.ACCESS_NETWORK_STATE</code></strong> — the only
+          permission the app declares. It is used solely to tell you, in Strict Offline Mode,
+          whether the device currently reports an active network connection. It does not allow the
+          app to transfer any data.
+        </li>
+        <li>
+          The app does <strong>not</strong> request camera, microphone, location, contacts, or
+          storage permissions.
+        </li>
+      </ul>
+
+      <h2>7. Local encryption and history</h2>
+      <p>
+        Messages are encrypted on the device with AES-256-GCM; the key is derived from your code
+        word with Argon2id (or PBKDF2-HMAC-SHA256 where Argon2id is unavailable). These are
+        published, standard algorithms. Message history is written to the device's local app
+        storage in encrypted form only; readable text is never written there.
+      </p>
+      <p>
+        If a code word is lost, the corresponding message cannot be recovered — not by you and not
+        by the developer. There is no backup key and no recovery mechanism.
+      </p>
+
+      <h2>8. Sharing an encrypted message</h2>
+      <p>
+        When you tap Share, Shadoo passes <strong>only the encrypted block of text</strong> to the
+        Android system share sheet, and only because you initiated that action. It never shares
+        your code word or the readable text of a message.
+      </p>
+      <p class="note">
+        Once you hand the encrypted text to another application through the share sheet, further
+        handling of it is performed by that third-party application you selected, and is governed
+        by that application's own privacy policy and terms — not by this policy. The same applies
+        to anything you paste, send or upload manually.
+      </p>
+
+      <h2>9. Clipboard</h2>
+      <ul>
+        <li>
+          <strong>Copy</strong> places only the encrypted block on the clipboard. Code words and
+          readable message text are never copied to the clipboard automatically.
+        </li>
+        <li>
+          <strong>Paste from clipboard</strong> reads the system clipboard only at the moment you
+          tap that button, only to look for an encrypted block, and does not retain the clipboard
+          contents afterwards. The app does not monitor or read the clipboard in the background.
+        </li>
+        <li>
+          Note that the clipboard is a shared area of the operating system. Content you place on it
+          may be visible to the operating system and to other applications.
+        </li>
+      </ul>
+
+      <h2>10. QR codes</h2>
+      <ul>
+        <li>
+          <strong>Display:</strong> an encrypted block can be shown on screen as a QR code. The QR
+          code contains only the encrypted block.
+        </li>
+        <li>
+          <strong>Save:</strong> when you tap Save QR, the app writes that QR code as a PNG image
+          into your device's picture storage (a "Shadoo" folder in Pictures). The image contains
+          only the encrypted block. It is an ordinary file on your device: it remains there until
+          you delete it, and it is subject to any backup or synchronisation you have configured for
+          your gallery.
+        </li>
+        <li>
+          <strong>Read from a file:</strong> "Load QR from file" reads a QR code from an image you
+          pick yourself. The app does not use the camera and does not request camera permission.
+        </li>
+      </ul>
+
+      <h2>11. Strict Offline Mode and Secure Input Mode</h2>
+      <ul>
+        <li>
+          <strong>Strict Offline Mode</strong> shows a checklist before decryption and uses the
+          network-state permission described in section 6 to tell you whether a connection is
+          currently reported. It is a reminder; it does not transmit anything.
+        </li>
+        <li>
+          <strong>Secure Input Mode</strong> lets you type the code word and the message on a
+          keyboard built into the app instead of the system keyboard, so that a third-party
+          keyboard app is not involved in the typing. Nothing typed this way leaves the device.
+        </li>
+      </ul>
+
+      <h2>12. Retention and deletion of local data</h2>
+      <ul>
+        <li>
+          <strong>Message history is one-time by design.</strong> It is erased irrecoverably when
+          the app is closed and again at every subsequent launch.
+        </li>
+        <li>
+          <strong>Wipe when the app goes to the background</strong> is enabled by default: history
+          is erased when you minimise the app or switch to another app. This can be turned off in
+          Settings.
+        </li>
+        <li>
+          <strong>Manual erase:</strong> Settings contains a function that irrecoverably erases the
+          whole local history immediately.
+        </li>
+        <li>
+          <strong>Manual export:</strong> if you use the export function, the app produces a file
+          containing your history in encrypted form only. That file is then yours to keep or
+          delete; the developer never receives it.
+        </li>
+        <li>
+          <strong>Settings</strong> persist locally until you change them or uninstall the app.
+        </li>
+        <li>
+          <strong>Uninstalling the app</strong> removes its local data from the device. Files you
+          chose to save elsewhere (for example a saved QR image or an exported history file) are
+          not removed by uninstalling and must be deleted by you.
+        </li>
+      </ul>
+
+      <h2>13. Account deletion</h2>
+      <p>
+        Shadoo has no accounts and no server-side storage, so there is no account to delete and no
+        remote data deletion request to make. Deletion is entirely under your control on the
+        device, as described in section 12.
+      </p>
+
+      <h2>14. Third parties</h2>
+      <p>
+        The app does not share data with third parties, because it does not transmit data at all.
+        Distribution through Google Play is subject to Google's own terms and privacy policy, which
+        apply to the store and to your device, independently of this application.
+      </p>
+
+      <h2>15. Children</h2>
+      <p>
+        Shadoo is not directed at children and does not knowingly collect data from anyone, of any
+        age, because it does not collect data.
+      </p>
+
+      <h2>16. Limitations — stated honestly</h2>
+      <ul>
+        <li>
+          The strength of the protection depends on the code words you choose. Short or common
+          words are easier to guess than long, unusual phrases.
+        </li>
+        <li>
+          No application can protect data on a device that is already compromised. If the device is
+          infected with spyware or a keylogger, or is under someone else's control, that is outside
+          what this or any other app can remedy.
+        </li>
+        <li>
+          The operating system, the device manufacturer, and other installed applications operate
+          outside this app and are governed by their own policies. This policy describes what
+          Shadoo does, not what the rest of your device does.
+        </li>
+        <li>
+          Anything you deliberately send out of the app — through the share sheet, the clipboard,
+          a saved image or an exported file — leaves the app's control at that point.
+        </li>
+      </ul>
+
+      <h2>17. Changes to this policy</h2>
+      <p>
+        If a future version of the app introduces functionality that affects data handling — for
+        example network access, additional permissions, or camera-based QR scanning — this policy
+        will be updated at this same address before that version is published, and the Google Play
+        Data Safety declaration will be revised accordingly.
+      </p>
+
+      <h2>18. Contact</h2>
+      <p>
+        For any privacy question or request regarding Shadoo, contact
+        <a href="mailto:rubilov@bk.ru">rubilov@bk.ru</a>.
+      </p>
+
+      <footer>
+        <p>
+          Anahronic Arts · <a href="/">Home</a> ·
+          <a href="mailto:rubilov@bk.ru">rubilov@bk.ru</a>
+        </p>
+        <p>Last updated: 8 September 2026</p>
+      </footer>
+    </main>
+  </body>
+</html>
