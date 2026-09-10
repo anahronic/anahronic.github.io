@@ -29,7 +29,7 @@
             <strong>Privacy contact:</strong>
             <a href="mailto:rubilov@bk.ru">rubilov@bk.ru</a>
           </li>
-          <li><strong>Effective date:</strong> 8 September 2026</li>
+          <li><strong>Effective date:</strong> 10 September 2026</li>
         </ul>
       </div>
 
@@ -37,7 +37,7 @@
       <p>
         Shadoo runs entirely on your device. It has no server of its own, no user accounts, and no
         analytics, advertising or crash-reporting components. The developer does not receive,
-        collect, store or have access to your messages, your code words, or any other personal
+        collect, store or have access to your messages, your code phrases, or any other personal
         data.
       </p>
       <p class="note">
@@ -47,16 +47,18 @@
         what an encryption app does. None of that locally processed data is collected by or
         transmitted to the developer, and Shadoo does not transmit user data automatically. When
         you explicitly choose Share, the encrypted message is handed to the third-party
-        application you select, as described in section 8.
+        application you select, as described in section 9.
       </p>
 
       <h2>2. What Shadoo does</h2>
       <p>
-        Two people agree in advance, offline, on one or more secret code words and give each one a
-        number. To send a message you choose the number, enter the code word and your text; the app
-        encrypts it on your device and shows you a single block of encrypted text. You deliver that
-        block yourself, by any means you choose. The recipient pastes it back into Shadoo and
-        enters the same code word to recover the original text.
+        Two people agree in advance, offline, on a secret code word or phrase. The app's home
+        screen offers two actions: Encrypt and Decrypt. To send a message you tap Encrypt, and the
+        app asks you, one screen at a time, for your message, your code phrase, and optionally an
+        expiration time; it then encrypts everything on your device and shows you a single block of
+        encrypted text. You deliver that block yourself, by any means you choose. The recipient taps
+        Decrypt, pastes the block back into Shadoo and enters the same code phrase to recover the
+        original text.
       </p>
 
       <h2>3. Data processed locally on your device</h2>
@@ -66,8 +68,8 @@
       </p>
       <ul>
         <li>
-          <strong>Code words you type.</strong> Used to derive an encryption key. They are not
-          stored in readable form and are not written to the message history.
+          <strong>The code word or phrase you type.</strong> Used to derive an encryption key. It
+          is not stored in readable form and is not written to the message history.
         </li>
         <li>
           <strong>Message text you type.</strong> Encrypted on the device. The readable text exists
@@ -75,7 +77,11 @@
         </li>
         <li>
           <strong>Encrypted message history.</strong> Stored on the device in encrypted form only —
-          see sections 7 and 12.
+          see sections 7 and 13.
+        </li>
+        <li>
+          <strong>An expiration time, if you choose one.</strong> Stored inside the encrypted
+          message itself, not separately. See section 8.
         </li>
         <li>
           <strong>App settings.</strong> Interface language, theme, auto-lock on/off and timeout,
@@ -84,11 +90,11 @@
         </li>
         <li>
           <strong>Clipboard content</strong> — only at the moment you tap the paste button, and
-          only to look for an encrypted block. See section 9.
+          only to look for an encrypted block. See section 10.
         </li>
         <li>
           <strong>An image file you select</strong> — only when you use the "Load QR from file"
-          function, and only to read a QR code out of that image. See section 10.
+          function, and only to read a QR code out of that image. See section 11.
         </li>
       </ul>
 
@@ -138,20 +144,46 @@
       <h2>7. Local encryption and history</h2>
       <p>
         Messages are encrypted on the device with AES-256-GCM; the key is derived from your code
-        word with Argon2id (or PBKDF2-HMAC-SHA256 where Argon2id is unavailable). These are
+        phrase with Argon2id (or PBKDF2-HMAC-SHA256 where Argon2id is unavailable). These are
         published, standard algorithms. Message history is written to the device's local app
         storage in encrypted form only; readable text is never written there.
       </p>
       <p>
-        If a code word is lost, the corresponding message cannot be recovered — not by you and not
-        by the developer. There is no backup key and no recovery mechanism.
+        If a code phrase is lost, the corresponding message cannot be recovered — not by you and
+        not by the developer. There is no backup key and no recovery mechanism.
       </p>
 
-      <h2>8. Sharing an encrypted message</h2>
+      <h2>8. Message expiration</h2>
+      <p>
+        When you encrypt a message you may optionally give it an expiration time, from 10 minutes to
+        14 days. The expiry is stored as a timestamp inside the encrypted message itself and is
+        cryptographically authenticated, which means it cannot be changed, removed or added in
+        transit without the message failing to decrypt. Once that time has passed, Shadoo does not
+        display the message and discards the recovered text from memory.
+      </p>
+      <p class="note">
+        Stated plainly, because it is easy to assume otherwise: <strong>this is not
+        self-destruction, and not a guarantee that the encrypted message is destroyed.</strong> The
+        expiry is enforced by the Shadoo app itself, checked against your device's own clock. A
+        device whose clock has been set back, an older version of the app, or other software written
+        to read the same message format can still show the text after the expiry has passed. The
+        encrypted block does not disappear and remains decryptable by anyone who has the code
+        phrase. Shadoo does not consult any time server for this, and could not: it has no network
+        access at all (see section 5).
+      </p>
+      <p>
+        Expiration involves no collection or transmission of data. The timestamp travels only inside
+        the encrypted message that you hand to the recipient yourself. Like the message's creation
+        time, the timestamp is not itself encrypted: someone who obtains the encrypted block can
+        read when it was created and until when the sender considered it current, but not its
+        contents.
+      </p>
+
+      <h2>9. Sharing an encrypted message</h2>
       <p>
         When you tap Share, Shadoo passes <strong>only the encrypted block of text</strong> to the
         Android system share sheet, and only because you initiated that action. It never shares
-        your code word or the readable text of a message.
+        your code phrase or the readable text of a message.
       </p>
       <p class="note">
         Once you hand the encrypted text to another application through the share sheet, further
@@ -160,10 +192,10 @@
         to anything you paste, send or upload manually.
       </p>
 
-      <h2>9. Clipboard</h2>
+      <h2>10. Clipboard</h2>
       <ul>
         <li>
-          <strong>Copy</strong> places only the encrypted block on the clipboard. Code words and
+          <strong>Copy</strong> places only the encrypted block on the clipboard. Code phrases and
           readable message text are never copied to the clipboard automatically.
         </li>
         <li>
@@ -177,7 +209,7 @@
         </li>
       </ul>
 
-      <h2>10. QR codes</h2>
+      <h2>11. QR codes</h2>
       <ul>
         <li>
           <strong>Display:</strong> an encrypted block can be shown on screen as a QR code. The QR
@@ -196,7 +228,7 @@
         </li>
       </ul>
 
-      <h2>11. Strict Offline Mode and Secure Input Mode</h2>
+      <h2>12. Strict Offline Mode and Secure Input Mode</h2>
       <ul>
         <li>
           <strong>Strict Offline Mode</strong> shows a checklist before decryption and uses the
@@ -204,13 +236,14 @@
           currently reported. It is a reminder; it does not transmit anything.
         </li>
         <li>
-          <strong>Secure Input Mode</strong> lets you type the code word and the message on a
-          keyboard built into the app instead of the system keyboard, so that a third-party
-          keyboard app is not involved in the typing. Nothing typed this way leaves the device.
+          <strong>Secure Input Mode</strong> lets you type the code phrase — both when encrypting
+          and when decrypting — and the message on a keyboard built into the app instead of the
+          system keyboard, so that a third-party keyboard app is not involved in the typing.
+          Nothing typed this way leaves the device.
         </li>
       </ul>
 
-      <h2>12. Retention and deletion of local data</h2>
+      <h2>13. Retention and deletion of local data</h2>
       <ul>
         <li>
           <strong>Message history is one-time by design.</strong> It is erased irrecoverably when
@@ -240,31 +273,35 @@
         </li>
       </ul>
 
-      <h2>13. Account deletion</h2>
+      <h2>14. Account deletion</h2>
       <p>
         Shadoo has no accounts and no server-side storage, so there is no account to delete and no
         remote data deletion request to make. Deletion is entirely under your control on the
-        device, as described in section 12.
+        device, as described in section 13.
       </p>
 
-      <h2>14. Third parties</h2>
+      <h2>15. Third parties</h2>
       <p>
         The app does not share data with third parties, because it does not transmit data at all.
         Distribution through Google Play is subject to Google's own terms and privacy policy, which
         apply to the store and to your device, independently of this application.
       </p>
 
-      <h2>15. Children</h2>
+      <h2>16. Children</h2>
       <p>
         Shadoo is not directed at children and does not knowingly collect data from anyone, of any
         age, because it does not collect data.
       </p>
 
-      <h2>16. Limitations — stated honestly</h2>
+      <h2>17. Limitations — stated honestly</h2>
       <ul>
         <li>
-          The strength of the protection depends on the code words you choose. Short or common
+          The strength of the protection depends on the code phrase you choose. Short or common
           words are easier to guess than long, unusual phrases.
+        </li>
+        <li>
+          An expiration time is enforced by the app against your device's clock. It is not a
+          guarantee that the encrypted message is destroyed or becomes unreadable — see section 8.
         </li>
         <li>
           No application can protect data on a device that is already compromised. If the device is
@@ -282,7 +319,7 @@
         </li>
       </ul>
 
-      <h2>17. Changes to this policy</h2>
+      <h2>18. Changes to this policy</h2>
       <p>
         If a future version of the app introduces functionality that affects data handling — for
         example network access, additional permissions, or camera-based QR scanning — this policy
@@ -290,7 +327,7 @@
         Data Safety declaration will be revised accordingly.
       </p>
 
-      <h2>18. Contact</h2>
+      <h2>19. Contact</h2>
       <p>
         For any privacy question or request regarding Shadoo, contact
         <a href="mailto:rubilov@bk.ru">rubilov@bk.ru</a>.
@@ -301,7 +338,7 @@
           Anahronic Arts · <a href="/">Home</a> ·
           <a href="mailto:rubilov@bk.ru">rubilov@bk.ru</a>
         </p>
-        <p>Last updated: 8 September 2026</p>
+        <p>Last updated: 10 September 2026</p>
       </footer>
     </main>
   </body>
